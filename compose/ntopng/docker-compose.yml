@@ -6,14 +6,12 @@ services:
     hostname: ntop
     container_name: ntop
     restart: always
-    # network_mode: host
-    # Port mapping (disable network_mode: host)
     ports:
       - 3000:3000
     volumes:
       - /etc/ntopng.license:/etc/ntopng.license:ro
       - ntopng_redis:/var/lib/redis
-    command: [ '-i', 'tcp://*:5556c', '-F', 'clickhouse', '--disable-login', '1' ]
+    command: [ '-i', 'tcp://*:5556c', '-F', 'clickhouse:9004', '--disable-login', '1' ]
     depends_on:
       - clickhouse
 
@@ -22,7 +20,10 @@ services:
     hostname: clickhouse
     container_name: clickhouse
     restart: always
-    network_mode: host
+    ports:
+      - 9000:9000
+      - 9004:9004
+      - 8123:8123
     volumes:
       - clickhouse_data:/var/lib/clickhouse
       - clickhouse_logs:/var/log/clickhouse-server
