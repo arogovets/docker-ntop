@@ -6,8 +6,8 @@ services:
     restart: always
     network_mode: host
     # Port mapping (disable network_mode: host)
-    #ports:
-    #  - 3000:3000
+    ports:
+      - 3000:3000
     volumes:
       - /etc/ntopng.license:/etc/ntopng.license:ro
       - ntopng_redis:/var/lib/redis
