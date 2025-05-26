@@ -11,7 +11,13 @@ services:
     volumes:
       - /etc/ntopng.license:/etc/ntopng.license:ro
       - ntopng_redis:/var/lib/redis
-    command: [ '-i', 'tcp://*:5556c', '-F', 'clickhouse@tcp://clickhouse:9004', '--disable-login', '1' ]
+    command:
+      - -i
+      - tcp://*:5556c
+      - -F
+      - clickhouse;clickhouse@9000,9004;ntopng;default;
+      - --disable-login
+      - "1"
     depends_on:
       - clickhouse
 
