@@ -1,7 +1,8 @@
 services:
   ntopng:
-    context: ../..
-    dockerfile: Dockerfile.ntopng
+    build:
+      context: ../..
+      dockerfile: Dockerfile.ntopng
     hostname: ntop
     container_name: ntop
     restart: always
