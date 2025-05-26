@@ -4,7 +4,7 @@ services:
     hostname: ntop
     container_name: ntop
     restart: always
-    network_mode: host
+    # network_mode: host
     # Port mapping (disable network_mode: host)
     ports:
       - 3000:3000
